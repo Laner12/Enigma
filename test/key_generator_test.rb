@@ -1,5 +1,5 @@
-require "Minitest/autorun"
-require "Minitest/pride"
+require "minitest/autorun"
+require "minitest/pride"
 require "./lib/key_generator"
 require "pry"
 
@@ -25,7 +25,7 @@ class KeyGeneratorTest < MiniTest::Test
     assert_equal false, numbers.key_numbers.include?("-")
   end
 
-  def test_the_class
+  def test_the_class_of_the_key_a
     numbers = KeyGenerator.new
 
     assert_equal Fixnum, numbers.key_a.class

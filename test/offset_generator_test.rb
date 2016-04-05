@@ -1,5 +1,5 @@
-require "Minitest/autorun"
-require "Minitest/pride"
+require "minitest/autorun"
+require "minitest/pride"
 require "./lib/offset_generator"
 require "pry"
 
