@@ -1,8 +1,8 @@
+require "date"
 require "pry"
 
 class KeyGenerator
   attr_reader :key_a, :key_b, :key_c, :key_d
-              # :offset_a, :offset_b, :offset_c, :offset_d
 
   DATE = Time.now.strftime("%d%m%Y").to_i
   NUMBERS = [*0..9]
