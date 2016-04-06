@@ -6,34 +6,46 @@ require "./lib/offset_generator"
 require "pry"
 
 class EncryptionTest < MiniTest::Test
-# combines the key/offsets to create rotation
-# has an input
-# has an output
-# rotates correctly
-# standardizes inputs before encrypting
-#do I need a prompt to enter the input
-# does the input have elements
-# does the input get coded 4 elements at a time
-  def test_it_has_an_input
-    skip
-    Encryption.new(input)
 
-    assert_equal false, input = nil
+  def test_it_has_an_input
+    e = Encryption.new("input")
+
+    assert_equal ["i", "n", "p", "u", "t"], e.input
   end
 
   def test_the_inputs_is_downcase
     e = Encryption.new("INPUT")
 
-    assert_equal "inputs", e.input
+    assert_equal ["i", "n", "p", "u", "t"], e.input
   end
 
-  def test_the_character_map_is_equal
-    # e = Encryption.new
+  def test_input_called_method_chars
+    e = Encryption.new ("Input")
 
-    assert_equal ["a", "b", "c", "d",
-       "e", "f", "g", "h","i", "j", "k", "l", "m",
-       "n", "o", "p", "q", "r","s", "t", "u", "v",
-        "w", "x","y", "z", "0", "1","2", "3", "4",
-         "5", "6", "7", "8", "9", " ", ".", ","], CHARACTER_MAP
+    assert_equal ["i", "n", "p", "u", "t"], e.input
+  end
+
+  def test_output_class
+    e = Encryption.new("INPUT")
+
+    assert_equal Array, e.input.class
+  end
+
+  def test_the_class_of_the_output
+    e = Encryption.new("input")
+
+    assert_equal String, e.output.class
+  end
+
+  def test_the_input_works_with_numbers
+    e = Encryption.new("1234567")
+
+    assert_equal String, e.output.class
+  end
+
+  def test_the_output_and_input_can_handle_mixed
+    e = Encryption.new("4556JJHHljlkj")
+
+    assert_equal String, e.output.class
   end
 end

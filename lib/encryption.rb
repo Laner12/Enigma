@@ -3,11 +3,15 @@ require "pry"
 
 
 class Encryption
-  CHARACTER_MAP = ("a".."z").to_a + ("0".."9").to_a + [" ", ".", ","]
+  CHARACTER_MAP = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
+                    "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+                    "t", "u", "v", "w", "x", "y", "z", "0", "1", "2",
+                    "3", "4", "5", "6", "7", "8", "9", " ", ".", ","]
+  attr_reader :input, :output
 
   def initialize(input)
     @offset = KeyGenerator.new
-    @input = input.downcase.chars
+    @input = input.to_s.downcase.chars
     @a_offset = rotate_a
     @b_offset = rotate_b
     @c_offset = rotate_c
@@ -40,16 +44,12 @@ class Encryption
     @output = ""
 
     while index < @input.size
-      @output += @a_offset[@input[index]] if index < @input.size
-      @output += @b_offset[@input[index + 1]] if index < @input.size
-      @output += @c_offset[@input[index + 2]] if index < @input.size
-      @output += @d_offset[@input[index + 3]] if index < @input.size
-      index += 4
+      @output << @a_offset[@input[index]] if index < @input.size
+      @output << @b_offset[@input[index + 1]] if index + 1 < @input.size
+      @output << @c_offset[@input[index + 2]] if index + 2 < @input.size
+      @output << @d_offset[@input[index + 3]] if index + 3 < @input.size
+        index += 4
     end
-    @output
+     @output
   end
 end
-
-e = Encryption.new("hiiiiiiiiiii")
-
-p e.output
