@@ -33,4 +33,3 @@ class OffsetGenerator
     d = key.key_d + @offset_d
   end
 end
-OffsetGenerator.new

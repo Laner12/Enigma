@@ -31,4 +31,3 @@ class KeyGenerator
     offset_number.flatten
   end
 end
-KeyGenerator.new

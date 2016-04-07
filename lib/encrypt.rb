@@ -1,13 +1,12 @@
 require "./lib/key_generator"
 require "pry"
 
-
-class Encryption
+class Encrypt
   CHARACTER_MAP = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
                     "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
                     "t", "u", "v", "w", "x", "y", "z", "0", "1", "2",
                     "3", "4", "5", "6", "7", "8", "9", " ", ".", ","]
-  attr_reader :input, :output
+  attr_reader :input, :output, :offset
 
   def initialize(input)
     @offset = KeyGenerator.new
@@ -42,7 +41,6 @@ class Encryption
   def output
     index = 0
     @output = ""
-
     while index < @input.size
       @output << @a_offset[@input[index]] if index < @input.size
       @output << @b_offset[@input[index + 1]] if index + 1 < @input.size
@@ -53,3 +51,6 @@ class Encryption
      @output
   end
 end
+
+e = Encrypt.new("i am on the struggle bus")
+binding.pry
